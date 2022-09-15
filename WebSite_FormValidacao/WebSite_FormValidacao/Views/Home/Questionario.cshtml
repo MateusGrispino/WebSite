@@ -1,0 +1,80 @@
+﻿@model WebSite_FormValidacao.Models.QuestionarioModel
+@{
+    ViewBag.Title = "Questionario";
+
+    List<string> TiposProjetos = new List<string>();
+    TiposProjetos.Add("Desktop VB.NET");
+    TiposProjetos.Add("Desktop C#");
+    TiposProjetos.Add("Web - ASP.NET");
+    TiposProjetos.Add("Web - ASP .NET MVC");
+    TiposProjetos.Add("Outros");
+}
+
+<div class="container-fluid" style="background-color:rgba(0,0,0,0.7); margin-top:20px; width:500px;">
+    <h2 style="color:white">Orçamento de Projeto de Software</h2>
+
+    @using (Html.BeginForm("Questionario", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.ValidationSummary()
+
+        <fieldset class="fieldset">
+            <div class="editor-label">
+                <!--Seleção Projeto-->
+                @Html.LabelFor(m => m.TipoProjeto)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(m => m.TipoProjeto, new
+               MultiSelectList(TiposProjetos))
+            </div>
+
+            <div class="editor-label">
+                <!--Digitar CEP-->
+                @Html.LabelFor(m => m.Cep)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Cep)
+            </div>
+
+            <div class="editor-label">
+                <!--Digitar Contato-->
+                @Html.LabelFor(m => m.Contato)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Contato)
+            </div>
+
+            <div class="editor-label">
+                <!--Digitar Email-->
+                @Html.LabelFor(m => m.Email)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Email)
+            </div>
+
+            <div class="editor-label">
+                <!--Telefone Contato-->
+                @Html.LabelFor(m => m.Telefone)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Telefone)
+            </div>
+
+            <div class="editor-label">
+                <!--Desc Projeto-->
+                @Html.LabelFor(m => m.Descricao)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Descricao)
+            </div>
+
+            <p><input type="submit" value="Solicitar Orçamento" /></p>
+        </fieldset>
+
+    }
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
